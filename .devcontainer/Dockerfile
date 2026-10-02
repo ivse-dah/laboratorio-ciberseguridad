@@ -2,15 +2,13 @@ FROM kalilinux/kali-rolling
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Instalar entorno XFCE oficial, utilidades de red, Firefox, OpenVPN, Burp Suite y Wordlists
-RUN apt-get update && apt-get install -y \
+# Instalar herramientas esenciales y las solicitadas por el docente sin romper dependencias
+RUN apt-get update && apt-get install -y --no-install-recommends \
     kali-linux-core \
     kali-tools-top10 \
     kali-desktop-xfce \
-    kali-wallpapers-all \
     burpsuite \
     wordlists \
-    default-jre \
     iputils-ping \
     net-tools \
     dnsutils \
