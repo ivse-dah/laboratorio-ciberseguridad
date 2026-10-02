@@ -2,11 +2,15 @@ FROM kalilinux/kali-rolling
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Instalar entorno Kali XFCE oficial, red, Firefox, OpenVPN y herramientas principales
-RUN apt-get update && apt-get install -y --no-install-recommends \
+# Instalar entorno XFCE oficial, utilidades de red, Firefox, OpenVPN, Burp Suite y Wordlists
+RUN apt-get update && apt-get install -y \
     kali-linux-core \
     kali-tools-top10 \
     kali-desktop-xfce \
+    kali-wallpapers-all \
+    burpsuite \
+    wordlists \
+    default-jre \
     iputils-ping \
     net-tools \
     dnsutils \
@@ -24,6 +28,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     ca-certificates \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Descomprimir rockyou automáticamente para que quede listo para usar
+RUN gzip -d /usr/share/wordlists/rockyou.txt.gz 2>/dev/null || true
 
 # Redirigir la raíz web directo al visor VNC
 RUN ln -s /usr/share/novnc/vnc.html /usr/share/novnc/index.html
