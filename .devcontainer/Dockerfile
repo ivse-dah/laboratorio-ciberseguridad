@@ -2,11 +2,15 @@ FROM kalilinux/kali-rolling
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Instalar entorno Kali XFCE, Firefox, herramientas y OpenVPN
+# Instalar entorno Kali XFCE oficial, utilidades de diagnóstico, Firefox, OpenVPN y herramientas
 RUN apt-get update && apt-get install -y \
     kali-linux-core \
-    kali-tools-top10 \
+    kali-linux-default \
     kali-desktop-xfce \
+    iputils-ping \
+    net-tools \
+    dnsutils \
+    iproute2 \
     firefox-esr \
     autocutsel \
     xfonts-base \
@@ -34,7 +38,7 @@ USER kali
 ENV USER=kali
 WORKDIR /home/kali
 
-# Preconfigurar arranque del entorno de escritorio XFCE
+# Preconfigurar arranque del entorno de escritorio XFCE con portapapeles activo
 RUN mkdir -p /home/kali/.vnc && \
     echo "kali123" | vncpasswd -f > /home/kali/.vnc/passwd && \
     chmod 600 /home/kali/.vnc/passwd && \
