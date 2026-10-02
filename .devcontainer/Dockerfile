@@ -2,11 +2,12 @@ FROM kalilinux/kali-rolling
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Instalar entorno Kali XFCE oficial completo, herramientas y servidor web noVNC
-RUN apt-get update && apt-get install -y --no-install-recommends \
+# Instalar entorno gráfico oficial completo de Kali, navegador Firefox y herramientas top
+RUN apt-get update && apt-get install -y \
     kali-linux-core \
     kali-tools-top10 \
     kali-desktop-xfce \
+    firefox-esr \
     xfonts-base \
     tightvncserver \
     tigervnc-tools \
