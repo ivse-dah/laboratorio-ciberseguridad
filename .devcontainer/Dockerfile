@@ -2,13 +2,15 @@ FROM kalilinux/kali-rolling
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Instalar entorno gráfico oficial completo de Kali, navegador Firefox y herramientas top
+# Instalar entorno Kali XFCE, Firefox, herramientas y OpenVPN
 RUN apt-get update && apt-get install -y \
     kali-linux-core \
     kali-tools-top10 \
     kali-desktop-xfce \
     firefox-esr \
     xfonts-base \
+    openvpn \
+    iptables \
     tightvncserver \
     tigervnc-tools \
     novnc \
