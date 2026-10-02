@@ -2,7 +2,7 @@ FROM kalilinux/kali-rolling
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Instalar herramientas esenciales de Kali, escritorio XFCE, complementos y servidor web noVNC
+# Instalar herramientas esenciales de Kali, escritorio XFCE, complementos completos y servidor web noVNC
 RUN apt-get update && apt-get install -y --no-install-recommends \
     kali-linux-core \
     kali-tools-top10 \
@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     kali-wallpapers-all \
     xfce4 \
     xfce4-terminal \
-    xfce4-whiskermenu-plugin \
+    xfce4-goodies \
     dbus-x11 \
     tightvncserver \
     tigervnc-tools \
