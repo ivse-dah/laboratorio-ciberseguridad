@@ -12,10 +12,7 @@
   "forwardPorts": [6080],
   "portsAttributes": {
     "6080": {
-      "label": "Kali Desktop",
-      "onAutoForward": "openBrowser",
-      "requireLocalPort": false,
-      "elevateIfNeeded": false
+      "label": "Kali Desktop"
     }
   }
 }
