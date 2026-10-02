@@ -1,10 +1,9 @@
-# 🛡️️ Laboratorio de Kali Linux en el Navegador
+# 🛡️ Laboratorio de Kali Linux en el Navegador
 
 Entorno oficial de **Kali Linux** con interfaz gráfica completa (XFCE) y herramientas de auditoría de seguridad preinstaladas, ejecutado al 100% en la nube sin costo.
 
-<a href="https://codespaces.new/ivse-dah/laboratorio-ciberseguridad" target="_blank" rel="noopener noreferrer">
-  <img src="https://github.com/codespaces/badge.svg" alt="Open in GitHub Codespaces">
-</a>
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ivse-dah/laboratorio-ciberseguridad)  
+*(Tip: Haz **Ctrl + Clic** o clic con la **rueda del ratón** para abrirlo en una pestaña nueva)*
 
 ---
 
