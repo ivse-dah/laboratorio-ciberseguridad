@@ -2,7 +2,7 @@ FROM kalilinux/kali-rolling
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Instalar herramientas de Kali, entorno XFCE completo y servidor web noVNC
+# Instalar herramientas esenciales de Kali, escritorio XFCE, complementos y servidor web noVNC
 RUN apt-get update && apt-get install -y --no-install-recommends \
     kali-linux-core \
     kali-tools-top10 \
@@ -11,7 +11,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     xfce4 \
     xfce4-terminal \
     xfce4-goodies \
-    xfce4-power-manager \
     dbus-x11 \
     tightvncserver \
     tigervnc-tools \
@@ -25,6 +24,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Redirigir la raíz web directo al visor VNC
 RUN ln -s /usr/share/novnc/vnc.html /usr/share/novnc/index.html
+
+# Eliminar el plugin de batería/energía de la barra por defecto en contenedores
+RUN sed -i '/power-manager-plugin/d' /etc/xdg/xfce4/panel/default.xml 2>/dev/null || true
 
 # Configurar usuario estándar 'kali' con permisos sudo
 RUN useradd -m -s /bin/bash kali && \
