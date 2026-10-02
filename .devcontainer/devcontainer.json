@@ -3,11 +3,12 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "postStartCommand": "sh -c 'vncserver :1 -geometry 1280x720 -depth 24 && websockify -D --web /usr/share/novnc/ 6080 localhost:5901'",
+  "postStartCommand": "vncserver :1 -geometry 1280x720 -depth 24 && websockify -D --web /usr/share/novnc/ 6080 localhost:5901",
   "forwardPorts": [6080],
   "portsAttributes": {
     "6080": {
       "label": "Kali Linux Escritorio",
+      "visibility": "public",
       "onAutoForward": "openBrowser"
     }
   }
