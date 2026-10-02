@@ -2,10 +2,12 @@ FROM kalilinux/kali-rolling
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Instalar escritorio XFCE, noVNC y herramientas esenciales
+# Instalar herramientas esenciales de Kali, escritorio XFCE, temas visuales y servidor web noVNC
 RUN apt-get update && apt-get install -y --no-install-recommends \
     kali-linux-core \
     kali-tools-top10 \
+    kali-themes \
+    kali-wallpapers-all \
     xfce4 \
     xfce4-terminal \
     dbus-x11 \
@@ -18,7 +20,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Configurar usuario kali con permisos sudo
+# Redirigir la raíz web directo al visor VNC
+RUN ln -s /usr/share/novnc/vnc.html /usr/share/novnc/index.html
+
+# Configurar usuario estándar 'kali' con permisos sudo
 RUN useradd -m -s /bin/bash kali && \
     echo "kali:kali" | chpasswd && \
     adduser kali sudo && \
