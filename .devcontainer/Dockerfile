@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     kali-tools-top10 \
     kali-desktop-xfce \
     firefox-esr \
+    autocutsel \
     xfonts-base \
     openvpn \
     iptables \
@@ -37,5 +38,5 @@ WORKDIR /home/kali
 RUN mkdir -p /home/kali/.vnc && \
     echo "kali123" | vncpasswd -f > /home/kali/.vnc/passwd && \
     chmod 600 /home/kali/.vnc/passwd && \
-    echo '#!/bin/sh\nunset SESSION_MANAGER\nunset DBUS_SESSION_BUS_ADDRESS\nexec startxfce4' > /home/kali/.vnc/xstartup && \
+    echo '#!/bin/sh\nunset SESSION_MANAGER\nunset DBUS_SESSION_BUS_ADDRESS\nautocutsel -fork -selection CLIPBOARD\nautocutsel -fork -selection PRIMARY\nexec startxfce4' > /home/kali/.vnc/xstartup && \
     chmod +x /home/kali/.vnc/xstartup
