@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     dbus-x11 \
     tightvncserver \
     tigervnc-tools \
+    xfonts-base \
     novnc \
     websockify \
     sudo \
@@ -30,6 +31,7 @@ RUN useradd -m -s /bin/bash kali && \
     echo "kali ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 USER kali
+ENV USER=kali
 WORKDIR /home/kali
 
 # Preconfigurar arranque del entorno de escritorio XFCE
