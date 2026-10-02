@@ -2,10 +2,10 @@ FROM kalilinux/kali-rolling
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Instalar entorno Kali XFCE oficial, utilidades de diagnóstico, Firefox, OpenVPN y herramientas
-RUN apt-get update && apt-get install -y \
+# Instalar entorno Kali XFCE oficial, red, Firefox, OpenVPN y herramientas principales
+RUN apt-get update && apt-get install -y --no-install-recommends \
     kali-linux-core \
-    kali-linux-default \
+    kali-tools-top10 \
     kali-desktop-xfce \
     iputils-ping \
     net-tools \
