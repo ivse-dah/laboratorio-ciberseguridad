@@ -2,7 +2,7 @@ FROM kalilinux/kali-rolling
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Instalar escritorio XFCE, fondos oficiales, Burp Suite, Wordlists, red y VNC
+# Instalar entorno XFCE, fondos oficiales, Burp Suite, Wordlists y herramientas de red
 RUN apt-get update && apt-get install -y --no-install-recommends \
     kali-linux-core \
     kali-tools-top10 \
@@ -48,6 +48,3 @@ RUN mkdir -p /home/kali/.vnc && \
     chmod 600 /home/kali/.vnc/passwd && \
     echo '#!/bin/sh\nunset SESSION_MANAGER\nunset DBUS_SESSION_BUS_ADDRESS\nautocutsel -fork -selection CLIPBOARD\nautocutsel -fork -selection PRIMARY\nexec startxfce4' > /home/kali/.vnc/xstartup && \
     chmod +x /home/kali/.vnc/xstartup
-
-# Mantener vivo el contenedor permanentemente para evitar que Codespaces se apague solo
-CMD ["sleep", "infinity"]
