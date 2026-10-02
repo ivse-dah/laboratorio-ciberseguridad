@@ -13,8 +13,9 @@
   "portsAttributes": {
     "6080": {
       "label": "Kali Desktop",
-      "visibility": "public",
-      "onAutoForward": "openBrowser"
+      "onAutoForward": "openBrowser",
+      "requireLocalPort": false,
+      "elevateIfNeeded": false
     }
   }
 }
