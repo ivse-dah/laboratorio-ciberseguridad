@@ -2,11 +2,13 @@ FROM kalilinux/kali-rolling
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Instalar herramientas esenciales y las solicitadas por el docente sin romper dependencias
+# Instalar escritorio XFCE, fondos oficiales, Burp Suite, Wordlists, red y VNC
 RUN apt-get update && apt-get install -y --no-install-recommends \
     kali-linux-core \
     kali-tools-top10 \
     kali-desktop-xfce \
+    kali-themes \
+    kali-wallpapers-2024 \
     burpsuite \
     wordlists \
     iputils-ping \
@@ -46,3 +48,6 @@ RUN mkdir -p /home/kali/.vnc && \
     chmod 600 /home/kali/.vnc/passwd && \
     echo '#!/bin/sh\nunset SESSION_MANAGER\nunset DBUS_SESSION_BUS_ADDRESS\nautocutsel -fork -selection CLIPBOARD\nautocutsel -fork -selection PRIMARY\nexec startxfce4' > /home/kali/.vnc/xstartup && \
     chmod +x /home/kali/.vnc/xstartup
+
+# Mantener vivo el contenedor permanentemente para evitar que Codespaces se apague solo
+CMD ["sleep", "infinity"]
