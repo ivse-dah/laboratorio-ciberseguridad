@@ -32,3 +32,17 @@ Abre una terminal en Kali (icono negro en la barra superior)[cite: 15, 20] y eje
 
 ```bash
 sudo openvpn ~/Downloads/vpn.ovpn
+
+### Paso 3: Verificar la conexión
+Abre una **segunda pestaña** en la terminal y envía una prueba de ping a la red del laboratorio:
+
+```bash
+ping -c 4 192.168.128.1
+
+## 🛑 Cómo finalizar la práctica (¡Muy importante!)
+
+Cada cuenta gratuita de GitHub cuenta con **60 horas al mes**. Este entorno funciona como un **laboratorio desechable**: para no malgastar los 30 minutos de inactividad que tarda el sistema en suspenderse automáticamente y evitar errores en sesiones futuras, elimina la máquina en cuanto termines la clase:
+
+1. Entra directamente a este enlace: **[https://github.com/codespaces](https://github.com/codespaces)**.
+2. Busca tu máquina activa bajo el repositorio `laboratorio-ciberseguridad`.
+3. Haz clic en el menú de los tres puntos (**`...`**) a la derecha y selecciona **Delete** (Eliminar).
