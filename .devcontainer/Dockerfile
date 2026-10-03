@@ -1,8 +1,9 @@
+Dockerfile
 FROM kalilinux/kali-rolling
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Paquetes esenciales con temas completos de Kali
+# Paquetes esenciales: XFCE, temas, fondos oficiales, Burp Suite, Wordlists, red y feh
 RUN apt-get update && apt-get install -y --no-install-recommends \
     kali-linux-core \
     kali-tools-top10 \
@@ -28,6 +29,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     ca-certificates \
     procps \
+    feh \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Redirigir la raíz web a noVNC
@@ -43,9 +45,9 @@ USER kali
 ENV USER=kali
 WORKDIR /home/kali
 
-# Configuración clásica de XFCE en VNC tal cual la teníamos antes
+# Configurar arranque de VNC cargando directamente el wallpaper oficial con feh
 RUN mkdir -p /home/kali/.vnc && \
     echo "kali123" | vncpasswd -f > /home/kali/.vnc/passwd && \
     chmod 600 /home/kali/.vnc/passwd && \
-    printf '#!/bin/sh\nunset SESSION_MANAGER\nunset DBUS_SESSION_BUS_ADDRESS\nautocutsel -fork -selection CLIPBOARD\nautocutsel -fork -selection PRIMARY\nstartxfce4 &\n' > /home/kali/.vnc/xstartup && \
+    printf '#!/bin/sh\nunset SESSION_MANAGER\nunset DBUS_SESSION_BUS_ADDRESS\nautocutsel -fork -selection CLIPBOARD\nautocutsel -fork -selection PRIMARY\nfeh --bg-fill /usr/share/backgrounds/kali-16x9/default.png &\nexec startxfce4\n' > /home/kali/.vnc/xstartup && \
     chmod +x /home/kali/.vnc/xstartup
