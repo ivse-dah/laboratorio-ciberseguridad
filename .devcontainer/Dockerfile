@@ -1,8 +1,9 @@
+Dockerfile
 FROM kalilinux/kali-rolling
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Paquetes completos: entorno gráfico, fondos oficiales, Burp Suite, Wordlists y utilidades
+# Instalar escritorio XFCE, temas oficiales, fondos, herramientas y VNC
 RUN apt-get update && apt-get install -y --no-install-recommends \
     kali-linux-core \
     kali-tools-top10 \
@@ -33,7 +34,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Redirigir la raíz web a noVNC
 RUN ln -s /usr/share/novnc/vnc.html /usr/share/novnc/index.html
 
-# Configurar usuario 'kali' con permisos sudo
+# Configurar usuario estándar 'kali'
 RUN useradd -m -s /bin/bash kali && \
     echo "kali:kali" | chpasswd && \
     adduser kali sudo && \
@@ -43,9 +44,13 @@ USER kali
 ENV USER=kali
 WORKDIR /home/kali
 
-# Configuración del entorno de escritorio XFCE con portapapeles activo
+# Configurar contraseña de VNC y xstartup
 RUN mkdir -p /home/kali/.vnc && \
     echo "kali123" | vncpasswd -f > /home/kali/.vnc/passwd && \
     chmod 600 /home/kali/.vnc/passwd && \
     echo '#!/bin/sh\nunset SESSION_MANAGER\nunset DBUS_SESSION_BUS_ADDRESS\nautocutsel -fork -selection CLIPBOARD\nautocutsel -fork -selection PRIMARY\nexec startxfce4' > /home/kali/.vnc/xstartup && \
     chmod +x /home/kali/.vnc/xstartup
+
+# Forzar el fondo de pantalla oficial en la configuración de XFCE
+RUN mkdir -p /home/kali/.config/xfce4/xfconf/xfce-perchannel-xml && \
+    echo '<?xml version="1.0" encoding="UTF-8"?>\n<channel name="xfce4-desktop" version="1.0">\n  <property name="backdrop" type="empty">\n    <property name="screen0" type="empty">\n      <property name="monitor0" type="empty">\n        <property name="workspace0" type="empty">\n          <property name="last-image" type="string" value="/usr/share/backgrounds/kali/kali-dragon-16x9.svg"/>\n          <property name="image-style" type="int" value="5"/>\n        </property>\n      </property>\n    </property>\n  </property>\n</channel>' > /home/kali/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
