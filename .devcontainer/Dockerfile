@@ -43,9 +43,9 @@ USER kali
 ENV USER=kali
 WORKDIR /home/kali
 
-# Configuración del entorno gráfico y wallpaper oficial mediante script de inicio
+# Configuración del entorno gráfico con asignación automática del wallpaper oficial
 RUN mkdir -p /home/kali/.vnc && \
     echo "kali123" | vncpasswd -f > /home/kali/.vnc/passwd && \
     chmod 600 /home/kali/.vnc/passwd && \
-    printf '#!/bin/sh\nunset SESSION_MANAGER\nunset DBUS_SESSION_BUS_ADDRESS\nautocutsel -fork -selection CLIPBOARD\nautocutsel -fork -selection PRIMARY\nxsetroot -solid "#1e1f29"\nexec startxfce4\n' > /home/kali/.vnc/xstartup && \
+    printf '#!/bin/sh\nunset SESSION_MANAGER\nunset DBUS_SESSION_BUS_ADDRESS\nautocutsel -fork -selection CLIPBOARD\nautocutsel -fork -selection PRIMARY\n(sleep 3 && xfconf-query -c xfce4-desktop -l 2>/dev/null | grep "last-image" | while read -r prop; do xfconf-query -c xfce4-desktop -p "$prop" -s /usr/share/backgrounds/kali-16x9/default.png; done) &\nexec startxfce4\n' > /home/kali/.vnc/xstartup && \
     chmod +x /home/kali/.vnc/xstartup
