@@ -28,7 +28,7 @@ Entorno oficial de **Kali Linux** con interfaz gráfica completa (XFCE), herrami
 Abre el navegador **Firefox** dentro de tu Kali en la nube, entra a la plataforma y descarga tu paquete VPN. Para evitar problemas con nombres largos, renombra el archivo descargado como **`vpn.ovpn`** dentro de la carpeta `Downloads`.
 
 ### Paso 2: Conectar el túnel
-Abre una terminal en Kali (icono negro en la barra superior)[cite: 15, 20] y ejecuta:
+Abre una terminal en Kali (icono negro en la barra superior) y ejecuta:
 
 ```bash
 sudo openvpn ~/Downloads/vpn.ovpn
