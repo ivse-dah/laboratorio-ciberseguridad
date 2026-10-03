@@ -1,41 +1,36 @@
 # 🛡️ Laboratorio de Kali Linux en el Navegador
 
-Entorno oficial de **Kali Linux** con interfaz gráfica completa (XFCE) y herramientas de auditoría de seguridad preinstaladas, ejecutado al 100% en la nube sin costo.
+Entorno oficial de **Kali Linux** con interfaz gráfica completa (XFCE), herramientas de auditoría de seguridad preinstaladas (**Burp Suite**, **Wordlists**, suite de pruebas de red) y soporte completo para túneles VPN, ejecutado al 100% en la nube sin costo.
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ivse-dah/laboratorio-ciberseguridad)  
-*(Tip: Haz **Ctrl + Clic** o clic con la **rueda del ratón** para abrirlo en una pestaña nueva)*
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/TU-USUARIO/laboratorio-ciberseguridad)
+
+*(Tip: Haz **Ctrl + Clic** o clic con la rueda del ratón en el botón para abrirlo en una pestaña nueva).*
 
 ---
 
 ## 🚀 Cómo iniciar el laboratorio
 
 1. Haz clic en el botón superior **Open in GitHub Codespaces** (inicia sesión con tu cuenta de GitHub si no lo has hecho).
-2. Si te aparece una pantalla de confirmación, pulsa el botón verde **Create codespace**.
-3. Espera de 2 a 3 minutos mientras la nube descarga y levanta la máquina virtual.
-4. Al terminar, se abrirá automáticamente una nueva pestaña en tu navegador:
-   * Si no se abre sola, ve a la pestaña inferior **Puertos** (*Ports*) y haz clic en el icono del **globo terráqueo** en el puerto `6080`.
-   * En la pantalla de conexión, haz clic en **Connect**.
+2. Si te aparece una ventana de confirmación, pulsa el botón verde **Create codespace**.
+3. **Paciencia durante la creación inicial (Aprox. 8 a 10 minutos):**  
+   GitHub descargará y compilará la imagen completa de Kali Linux con todas las herramientas y temas visuales oficiales. Puedes ver el avance en la consola; no cierres la ventana.
+4. Una vez cargado el entorno de VS Code, **el escritorio se abrirá automáticamente en una nueva pestaña**:
+   * Si no se abre por sí sola, ve a la pestaña inferior **Puertos** (*Ports*) dentro de VS Code y haz clic en el icono del **globo terráqueo** en la fila del puerto `6080`.
+   * En la pantalla de bienvenida, haz clic en el botón **Connect**.
    * **Contraseña de acceso:** `kali123`
-   * **Usuario en terminal:** `kali` (contraseña sudo: `kali`).
+   * **Usuario en terminal:** `kali` (contraseña para `sudo`: `kali`).
 
 ---
 
-## 🛑 Cómo apagar la máquina al terminar la clase (¡Muy importante!)
+## 🌐 Conexión a la VPN (TryHackMe / Hack The Box / Laboratorio)
 
-Cada cuenta gratuita de GitHub dispone de **60 horas al mes**. Para congelar el tiempo y no consumir tu cuota mientras no estés en clase, apaga el entorno siguiendo cualquiera de estos métodos:
+Para conectar tu máquina en la nube a las redes de práctica mediante OpenVPN:
 
-### Método 1: Desde la pestaña de Codespaces (El más rápido)
-1. Vuelve a la pestaña donde ves los archivos y la consola de Codespaces.
-2. En la esquina inferior izquierda, haz clic sobre el botón azul que dice **`Codespaces: ...`**.
-3. En el menú superior que se despliega, haz clic en **Detener el codespace actual** (*Stop Current Codespace*).
+### Paso 1: Descargar el archivo de configuración
+Abre el navegador **Firefox** dentro de tu Kali en la nube, entra a la plataforma de práctica y descarga tu archivo de acceso VPN.
 
-### Método 2: Con el atajo de teclado
-1. Dentro de la pestaña de Codespaces, presiona las teclas **`Ctrl + Shift + P`** (o tecla **`F1`**).
-2. Escribe: `Stop Current Codespace` y presiona **Enter**.
+### Paso 2: Conectar el túnel
+Abre una terminal en Kali (icono negro en la barra superior) y ejecuta:
 
-### Método 3: Desde el panel web de GitHub
-1. Entra a [github.com/codespaces](https://github.com/codespaces).
-2. Busca tu máquina de `laboratorio-ciberseguridad`.
-3. Haz clic en los **tres puntos (`...`)** a la derecha y selecciona **Stop codespace**.
-
-> 💡 **Nota de respaldo:** Si por descuido cierras la ventana del navegador sin apagar la máquina, GitHub la suspenderá de forma automática tras **30 minutos de inactividad** para proteger tus horas restantes.
+```bash
+sudo openvpn ~/Downloads/*.ovpn
