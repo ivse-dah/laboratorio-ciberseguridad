@@ -2,7 +2,7 @@
 
 Entorno oficial de **Kali Linux** con interfaz gráfica completa (XFCE), herramientas de auditoría de seguridad preinstaladas (**Burp Suite**, **Wordlists**, utilidades de red) y soporte completo para túneles VPN, ejecutado al 100% en la nube sin costo.
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/TU-USUARIO/laboratorio-ciberseguridad)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ivse-dah/laboratorio-ciberseguridad)
 
 *(Tip: Haz **Ctrl + Clic** o clic con la rueda del ratón en el botón para abrirlo en una pestaña nueva).*
 
