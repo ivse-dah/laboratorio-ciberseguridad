@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     kali-wallpapers-2024 \
     burpsuite \
     wordlists \
+    enum4linux \
     iputils-ping \
     net-tools \
     dnsutils \
